@@ -1,0 +1,29 @@
+<link rel="stylesheet" href="/css/<%= currents[1] %>-<%= boardType %>.css">
+<article class="board-container gallery-type list-page">
+  <div class="my-2">
+    <div class="mb-2">총 레코드: <%= totalRecord %>개</div>
+    <div class="d-flex">
+      <%- include('../inc/search.ejs') %> 
+      <%- include('../inc/sort.ejs') %> 
+      <a href="<%= goList %>&type=create" class="btn btn-primary ml-auto">게시글 작성</a>
+    </div>
+  </div>
+  <ul class="list-wrap">
+    <% for(let v of lists) { %>
+      <li class="list" data-link="<%= goPath %>/<%= v.id %>?<%= goQuery %>">
+        <div class="img-wrap" style="background-image: url('<%= v.imgs.length ? v.imgs[0].thumbSrc : `https://via.placeholder.com/300?text=No+Image` %>');"></div>
+        <div class="content-wrap">
+          <div class="title">
+            <%= v.title %>
+            <small>(<%= v.readCounter %>)</small>
+          </div>
+        </div>
+      </li>
+    <% } %>
+  </ul>
+  <%- include('../inc/pager.ejs', pager) %> 
+  <div class="text-center my-4">
+    <a href="<%= goList %>&type=create" class="btn btn-primary">글작성</a>
+  </div>
+</article>
+<script src="/js/<%= currents[1] %>/<%= boardType %>-list.js"></script>
